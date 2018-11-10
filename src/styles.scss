@@ -1,0 +1,16 @@
+/* You can add global styles to this file, and also import other style files */
+
+// Bootsrap Variables
+@import "styles-variables";
+// Bootstrap
+@import '~bootstrap/scss/bootstrap-reboot';
+@import '~bootstrap/scss/bootstrap-grid';
+// Angular Material
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+
+// General Styling
+.paperw {
+    width: 100% !important;
+    margin: 0px !important;
+    padding: 25px !important;
+}

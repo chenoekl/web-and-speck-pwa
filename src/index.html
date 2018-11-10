@@ -1,0 +1,186 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>PWA Test App</title>
+  <base href="/">
+
+  <!-- Viewport Tags und Favicon -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+
+  <!-- Tags für PWA -->
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#1976d2">
+
+  <!-- Styling für PreBootstrap Loader -->
+  <style>
+    /* Loading Icon mit H1 Titel
+   --------------------------------------------------------------- */
+    #pre-bootstrap {
+      background-color: #fff;
+      bottom: 0px;
+      left: 0px;
+      position: fixed;
+      right: 0px;
+      top: 0px;
+      z-index: 999999;
+      visibility: hidden;
+      opacity: 0;
+      transition: all .8s ease-in-out;
+    }
+
+    app-root:empty+#pre-bootstrap {
+      visibility: visible;
+      opacity: 1;
+    }
+
+    #pre-bootstrap div.messaging {
+      color: #333;
+      font-family: Arial, Helvetica, sans-serif;
+      left: 0px;
+      margin-top: -90px;
+      position: absolute;
+      right: 0px;
+      text-align: center;
+      top: 50%;
+    }
+
+    #pre-bootstrap .icon {
+      height: 120px;
+      margin-bottom: 10px;
+    }
+
+    #pre-bootstrap h1 {
+      font-size: 26px !important;
+      font-weight: 300 !important;
+      line-height: 35px !important;
+      margin: 0px 0px 5px 0px !important;
+    }
+
+    /* Loading Bar
+    --------------------------------------------------------------- */
+    #pre-bootstrap .progress {
+      background-color: #c2512b;
+      box-shadow: none;
+      display: block;
+      height: 5px;
+      border-radius: 0;
+      margin-bottom: 1rem;
+      overflow: hidden;
+      position: relative;
+      width: 100%;
+    }
+
+    #pre-bootstrap .progress .progress-bar {
+      background-color: #0d47a1;
+      border-radius: 0;
+      box-shadow: none;
+      height: 5px;
+    }
+
+    #pre-bootstrap .progress .progress-bar-animated {
+      transition: width 2s ease-in-out 0s;
+    }
+
+    #pre-bootstrap .progress .indeterminate {
+      background-color: #f97f56;
+    }
+
+    #pre-bootstrap .progress .indeterminate::after,
+    #pre-bootstrap .progress .indeterminate::before {
+      background-color: inherit;
+      bottom: 0;
+      content: "";
+      left: 0;
+      position: absolute;
+      top: 0;
+      will-change: left, right;
+    }
+
+    #pre-bootstrap .progress .indeterminate::before {
+      animation: 2.1s cubic-bezier(0.65, 0.815, 0.735, 0.395) 0s normal none infinite running indeterminate;
+    }
+
+    #pre-bootstrap .progress .indeterminate::after {
+      animation: 2.1s cubic-bezier(0.165, 0.84, 0.44, 1) 1.15s normal none infinite running indeterminate-short;
+    }
+
+    @keyframes indeterminate {
+      0% {
+        left: -35%;
+        right: 100%;
+      }
+
+      100%,
+      60% {
+        left: 100%;
+        right: -90%;
+      }
+    }
+
+    @keyframes indeterminate {
+      0% {
+        left: -35%;
+        right: 100%;
+      }
+
+      100%,
+      60% {
+        left: 100%;
+        right: -90%;
+      }
+    }
+
+    @keyframes indeterminate-short {
+      0% {
+        left: -200%;
+        right: 100%;
+      }
+
+      100%,
+      60% {
+        left: 107%;
+        right: -8%;
+      }
+    }
+
+    @keyframes indeterminate-short {
+      0% {
+        left: -200%;
+        right: 100%;
+      }
+
+      100%,
+      60% {
+        left: 107%;
+        right: -8%;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- App Root - Content -->
+  <app-root></app-root>
+
+  <!-- Pre-bootstrap Loader -->
+  <div id="pre-bootstrap">
+    <div class="progress jusline-bg-red loading-bar desktop">
+      <div class="indeterminate jusline-bg-light-red"></div>
+    </div>
+
+    <div class="messaging">
+      <img src="assets/jusline-icon.png" alt="Loading Icon" class="icon">
+      <h1>
+        App is loading...
+      </h1>
+    </div>
+  </div>
+
+  <!-- No Script Message -->
+  <noscript>Please enable JavaScript to continue using this application.</noscript>
+</body>
+
+</html>

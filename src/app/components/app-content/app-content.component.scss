@@ -1,0 +1,25 @@
+/*
+ * Copyright (c) 2018 ADVOKAT Unternehmensberatung GREITER & GREITER GmbH
+ * ==>
+ *
+ * Erstellt: CHE - Thu Nov 08 2018
+ *
+ * Abhängikeiten:
+ * ==>
+ *
+ * Beschreibung:
+ * ==>
+ *
+ */
+
+.mat-card {
+    margin-bottom: 15px;
+    .mat-card-content {
+        margin-bottom: 50px;
+    }
+    .mat-card-actions {
+        position: absolute;
+        bottom: 25px;
+        right: 25px;
+    }
+}
