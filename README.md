@@ -1,4 +1,4 @@
-# web-and-speck-pwa
+# Web & Speck - PWA Test App
 Test application and presentation for progressive web apps (PWA)
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.0.4.

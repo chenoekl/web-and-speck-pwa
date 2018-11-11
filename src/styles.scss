@@ -2,10 +2,13 @@
 
 // Bootsrap Variables
 @import "styles-variables";
+
 // Bootstrap
 @import '~bootstrap/scss/bootstrap-reboot';
 @import '~bootstrap/scss/bootstrap-grid';
+
 // Angular Material
+@import '~normalize.css/normalize.css';
 @import "~@angular/material/prebuilt-themes/indigo-pink.css";
 
 // General Styling

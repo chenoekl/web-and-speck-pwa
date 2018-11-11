@@ -17,7 +17,10 @@ import { HttpClient, HttpHeaders, HttpHeaderResponse } from '@angular/common/htt
 
 
 import { catchError, map, tap } from 'rxjs/operators';
-import { Observable, of } from 'rxjs';
+import { Observable, of, BehaviorSubject } from 'rxjs';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { Document } from '../document';
+import { DOCUMENTS } from '../document-mock';
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -30,10 +33,32 @@ const httpOptions = {
   providedIn: 'root'
 })
 export class DataService {
+  private documentsSource = new BehaviorSubject<Document[]>(JSON.parse(localStorage.getItem('currentDocuments')));
+  public currentDocumentsSource = this.documentsSource.asObservable();
 
   constructor(
-    private http: HttpClient
+    private http: HttpClient,
+    public snackBar: MatSnackBar
   ) { }
+
+  /**
+   * changeDocuments
+   * 
+   * @param documents
+   * @returns void 
+   */
+  public changeDocuments(documents: Document[]): void {
+    localStorage.setItem('currentDocuments', JSON.stringify(documents));
+    this.documentsSource.next(documents);
+  }
+
+  /**
+   * getDocuments
+   *  Reads the DOCUMENTS from the Mock Data.
+   */
+  public getDocuments() {
+    return DOCUMENTS;
+  }
 
   /**
    * getContent
@@ -65,6 +90,9 @@ export class DataService {
     return (error: any): Observable<T> => {
       // Log Error
       this.log(error);
+
+      // Print Message with Snackbar
+      this.snackBar.open(error.message, 'OK');
 
       // Let the app keep running by returning an empty result.
       return of(result as T);

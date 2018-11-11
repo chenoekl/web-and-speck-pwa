@@ -13,5 +13,16 @@
 -->
 
 <header>
-  <mat-toolbar color="primary">PWA Test App</mat-toolbar>
+  <mat-toolbar color="primary">
+    <mat-toolbar-row>
+      <span>PWA Test App</span>
+      <span class="spacer"></span>
+      <button mat-icon-button type="button" (click)="refresh()">
+        <mat-icon>refresh</mat-icon>
+      </button>
+      <button mat-icon-button type="button" (click)="openAddDialog()">
+        <mat-icon>add</mat-icon>
+      </button>
+    </mat-toolbar-row>
+  </mat-toolbar>
 </header>

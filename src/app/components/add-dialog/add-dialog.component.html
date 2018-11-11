@@ -1,0 +1,16 @@
+<form [formGroup]="documentsForm">
+  <h1 mat-dialog-title>Add Document</h1>
+  <div mat-dialog-content>
+    <mat-form-field>
+      <mat-select placeholder="Choose a document" formControlName="documentsControl">
+        <mat-option *ngFor="let document of documents" [value]="document.id">
+          {{document.name}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+  <div mat-dialog-actions>
+    <button mat-button (click)="close()">Close</button>
+    <button mat-button (click)="save()" cdkFocusInitial>Ok</button>
+  </div>
+</form>

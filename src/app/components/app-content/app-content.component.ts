@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { DataService } from 'src/app/services/data.service';
 import { DomSanitizer } from '@angular/platform-browser';
+import { Document } from '../../document';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { MatDialog } from '@angular/material/dialog';
+import { AddDialogComponent } from '../add-dialog/add-dialog.component';
 
 @Component({
   selector: 'app-content',
@@ -9,44 +13,85 @@ import { DomSanitizer } from '@angular/platform-browser';
 })
 export class AppContentComponent implements OnInit {
 
-  public paragraphs: any[];
+  public savedDocuments: Document[] = [];
 
   constructor(
     private dataService: DataService,
-    public sanitizer: DomSanitizer
+    public sanitizer: DomSanitizer,
+    private snackBar: MatSnackBar,
+    public dialog: MatDialog
   ) { }
 
-  ngOnInit() {
-    this.paragraphs = [
-      {
-        id: 1,
-        name: "§ 12 ABGB",
-        law_name: "Allgemeines Bürgerliches Gesetzbuch",
-        url: "https://www.ris.bka.gv.at/Dokumente/Bundesnormen/NOR12017702/NOR12017702.html",
-        content: ""
-      },
-      {
-        id: 2,
-        name: "§ 132 ZPO",
-        law_name: "Zivilprozessordnung",
-        url: "https://www.ris.bka.gv.at/Dokumente/Bundesnormen/NOR12039001/NOR12039001.html",
-        content: ""
-      }
-    ];
+  /**
+   * ngOnInit
+   *  Initializes the component
+   * 
+   * @returns void
+   */
+  ngOnInit(): void {
+    // Get Saved Documents 
+    this._getSavedDocuments();
 
     // Request Texts from Document URLs
-    this._getParagraphContent();
+    this._getDocumentContent();
   }
 
   /**
-   *
+   * remove
+   *  Removes the chosen document from the currently saved
+   *  Documents and updates the localStorage.
+   * 
+   * @param document 
+   * @returns void
    */
-  private _getParagraphContent() {
-    for (let i = 0; i < this.paragraphs.length; ++i) {
-      this.dataService.getContent(this.paragraphs[i].url)
-        .subscribe(data => {
-          this.paragraphs[i].content = data;
-        });
+  public remove(document: Document): void {
+    this.savedDocuments = this.savedDocuments.filter(d => d !== document);
+    this.dataService.changeDocuments(this.savedDocuments);
+    this.snackBar.open(`${document.name} has been removed from your local workspace.`, 'OK');
+  }
+
+  /**
+   * openAddDialog
+   *  Opens the Add Document Dialog
+   * 
+   * @returns void
+   */
+  public openAddDialog(): void {
+    this.dialog.open(AddDialogComponent, { data: {} });
+  }
+
+  /**
+   * _getDocuments
+   *  Gets the currently saved Documents from the localStorage
+   *  Observable.
+   * 
+   * @returns void
+   */
+  private _getSavedDocuments() {
+    this.dataService.currentDocumentsSource
+      .subscribe(data => {
+        if (data !== null) {
+          this.savedDocuments = data;
+        }
+      })
+  }
+
+  /**
+   * _getDocumentContent
+   *  Gets the Content of the saved Documents from the RIS API
+   *  and adds it to the saved Documents Structure.
+   * 
+   * @returns void
+   */
+  private _getDocumentContent() {
+    if (this.savedDocuments) {
+      for (let i = 0; i < this.savedDocuments.length; ++i) {
+        this.dataService.getContent(this.savedDocuments[i].url)
+          .subscribe(data => {
+            this.savedDocuments[i].content = data;
+            this.dataService.changeDocuments(this.savedDocuments);
+          });
+      }
     }
   }
 
