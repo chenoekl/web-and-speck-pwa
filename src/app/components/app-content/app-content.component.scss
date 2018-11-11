@@ -13,9 +13,10 @@
  */
 
 .mat-card {
-    margin-bottom: 15px;
+    height: 100%;
     .mat-card-content {
         margin-bottom: 50px;
+        overflow-y: auto;
     }
     .mat-card-actions {
         position: absolute;

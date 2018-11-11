@@ -121,7 +121,7 @@ export class AddDialogComponent implements OnInit {
         this.dataService.changeDocuments(this.savedDocuments)
 
         // Print Message and Close Dialog
-        this.snackBar.open(`${document.name} has been added from your local workspace.`, 'OK');
+        this.snackBar.open(`${document.name} has been added to your local workspace.`, 'OK');
         this.dialogRef.close();
       });
   }

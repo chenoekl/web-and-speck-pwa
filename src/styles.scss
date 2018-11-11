@@ -7,6 +7,9 @@
 @import '~bootstrap/scss/bootstrap-reboot';
 @import '~bootstrap/scss/bootstrap-grid';
 
+// Material Icons
+@import 'assets/fonts/material-icons/material-icons.css';
+
 // Angular Material
 @import '~normalize.css/normalize.css';
 @import "~@angular/material/prebuilt-themes/indigo-pink.css";
@@ -15,5 +18,5 @@
 .paperw {
     width: 100% !important;
     margin: 0px !important;
-    padding: 25px !important;
+    padding: 20px !important;
 }

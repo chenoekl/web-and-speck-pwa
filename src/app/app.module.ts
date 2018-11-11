@@ -51,7 +51,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
   providers: [
     {
       provide: MAT_SNACK_BAR_DEFAULT_OPTIONS, useValue: {
-        duration: 2500
+        duration: 4000
       }
     },
     {
