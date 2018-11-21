@@ -1,6 +1,11 @@
 # Web & Speck - PWA Test App
 Test application and presentation for progressive web apps (PWA)
 
+## Presentation
+The presentation for Web & Speck on the 22nd of November 2018 in Innsbruck (Austria) can be found here. 
+- https://github.com/chenoekl/web-and-speck-pwa/blob/master/Web%26Speck%20PWA%20Presentation.pdf
+The PDF includes all the slides and notes which have been used at the event.
+
 ## Test Application
 This test application was built with Angular 6, Angular Material, ServiceWorker and Bootstrap. The main purpose for this app is to illustrate how a Progressive Web App can be built with Angular by using the ServiceWorker module. Therefor, a limited use case has been implemented which is just to add documents to the local storage and to load the content from the RIS (Rechtsinformationssystem Österreich), when network is available. However, the CORS issue has not been addressed for this development so you will encounter an error when you start the app locally or with https://spielwiese.jusline.at. In order to use the app you need to install https://chrome.google.com/webstore/detail/allow-control-allow-origi/nlfbmbojpeacfghkpbjhddihlkkiljbi and turn it on in order to switch of CORS in your chrome browser. 
 
