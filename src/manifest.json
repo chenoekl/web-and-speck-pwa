@@ -5,8 +5,8 @@
   "background_color": "#fafafa",
   "display": "standalone",
   "orientation": "any",
-  "scope": "/",
-  "start_url": "/",
+  "scope": "/web-and-speck-pwa/",
+  "start_url": "/web-and-speck-pwa/",
   "icons": [
     {
       "src": "assets/icons/icon-72x72.png",
